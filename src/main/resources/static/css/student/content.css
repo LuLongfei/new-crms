@@ -1,0 +1,92 @@
+.lightline {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 1%;
+    border: 0.5px solid #41C7DB;
+}
+
+.topicUl {
+
+    line-height: 200%;
+    font-size: 18px;
+    list-style-type: none
+}
+
+.uploadbutton {
+    left: 30%;
+    height: 100%;
+    width: 100%;
+    min-height: 50px;
+    background-color: #D4EEF2;
+    border-color: #269CE9;
+    border: 1px #DADADA solid;
+    border-radius: 20px;
+    font-size: 18px;
+    outline: none;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.viewscorebutton {
+    left: 30%;
+    height: 100%;
+    width: 100%;
+    min-height: 50px;
+    margin-top: 2%;
+    background-color: #D4EEF2;
+    border-color: #269CE9;
+    border: 1px #DADADA solid;
+    border-radius: 20px;
+    font-size: 18px;
+    outline: none;
+    vertical-align: middle;
+    text-align: center;
+}
+.main_box_right_content{
+    width: 90%;
+    min-height: 150px;
+    background-color: rgba(11, 172, 225, 0.2);
+    border-radius: 15px;
+    padding: 2%;
+    margin: 2% auto;
+    height: 15%;
+}
+.classtitle{
+    height:20%;
+    color: black;
+    font-size: 28px;
+    font-family: Arial;
+    font-weight: normal;
+    text-align: center;
+    margin: 0 auto;
+}
+.main_box_right_content_button{
+    width: 10%;
+    height: 30px;
+    background-color:rgba(130,167,253,1.00);
+    margin-top: -0.5%;
+    font-size: 16px;
+    float: right;
+    border:none ;
+    text-align: center;
+    border-radius: 10px;
+    margin-right: 10px;
+    z-index: 100;
+}
+.divideline{
+    width: 96%;
+    margin-bottom: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1.5px solid white;
+}
+.table{
+    margin-left:10%;
+    margin-right:10%;
+    height:100%;
+    width:90%;}
+.table td{
+    font-size: 10px;
+    font-family:YouYuan;
+    width:50%;
+}
