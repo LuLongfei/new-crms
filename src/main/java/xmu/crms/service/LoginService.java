@@ -2,12 +2,14 @@ package xmu.crms.service;
 
 import java.math.BigInteger;
 
+import org.springframework.stereotype.Service;
 import xmu.crms.entity.*;
 
 /**
  * @author ModuleStandardGroup/YeHongjie
  * @version 2.00
  */
+@Service
 public interface LoginService {
 	
 	/**
