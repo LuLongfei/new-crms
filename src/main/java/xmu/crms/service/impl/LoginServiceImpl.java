@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import xmu.crms.dao.LoginDAO;
 import xmu.crms.entity.User;
+import xmu.crms.exception.UserNotFoundException;
 import xmu.crms.service.LoginService;
 
 import java.math.BigInteger;
@@ -31,7 +32,7 @@ public class LoginServiceImpl implements LoginService {
     private static final String KEY_ERR_CODE = "errcode";
 
     @Override
-    public User signInWeChat(BigInteger userId, String code, String state, String successUrl) {
+    public User signInWeChat(BigInteger userId, String code, String state, String successUrl) throws UserNotFoundException{
         User val = null;
         try {
             String urlString = String.format("https://api.weixin.qq.com/sns/jscode2session?" +
@@ -53,16 +54,22 @@ public class LoginServiceImpl implements LoginService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if(val == null){
+            throw new UserNotFoundException();
+        }
         return val;
     }
 
     @Override
-    public User signInPhone(User user) {
+    public User signInPhone(User user) throws UserNotFoundException{
         User val = null;
         try {
             val = loginDAO.getUserLoginByPhone(user.getPhone());
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        if(val == null){
+            throw new UserNotFoundException();
         }
         return val;
     }
