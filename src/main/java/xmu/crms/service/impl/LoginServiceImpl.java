@@ -29,10 +29,11 @@ public class LoginServiceImpl implements LoginService {
 
     private static final String KEY_OPEN_ID = "openid";
     // private static final String KEY_SESSION_KEY = "session_key";
+
     private static final String KEY_ERR_CODE = "errcode";
 
     @Override
-    public User signInWeChat(BigInteger userId, String code, String state, String successUrl) throws UserNotFoundException{
+    public User signInWeChat(BigInteger userId, String code, String state, String successUrl) throws UserNotFoundException {
         User val = null;
         try {
             String urlString = String.format("https://api.weixin.qq.com/sns/jscode2session?" +
@@ -46,29 +47,26 @@ public class LoginServiceImpl implements LoginService {
             if (map.get(KEY_OPEN_ID) != null) {
                 val = loginDAO.getUserLoginByWechat(map.get(KEY_OPEN_ID).toString());
             } else if (map.get(KEY_ERR_CODE) != null) {
-                // 错误
-                // System.out.println(urlString);
-                // System.out.println(map.get(KEY_ERR_CODE));
+                val = null;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(val == null){
+        if (val == null) {
             throw new UserNotFoundException();
         }
         return val;
     }
 
     @Override
-    public User signInPhone(User user) throws UserNotFoundException{
+    public User signInPhone(User user) throws UserNotFoundException {
         User val = null;
         try {
             val = loginDAO.getUserLoginByPhone(user.getPhone());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(val == null){
+        if (val == null) {
             throw new UserNotFoundException();
         }
         return val;
