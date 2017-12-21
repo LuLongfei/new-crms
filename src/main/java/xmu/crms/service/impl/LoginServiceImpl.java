@@ -71,4 +71,19 @@ public class LoginServiceImpl implements LoginService {
         }
         return val;
     }
+
+    @Override
+    public User signUpPhone(User user) {
+        return null;
+    }
+
+    @Override
+    public void deleteTeacherAccount(BigInteger userId) throws IllegalArgumentException, UserNotFoundException {
+
+    }
+
+    @Override
+    public void deleteStudentAccount(BigInteger userId) throws IllegalArgumentException, UserNotFoundException {
+
+    }
 }
