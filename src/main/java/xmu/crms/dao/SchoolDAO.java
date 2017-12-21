@@ -19,15 +19,15 @@ public class SchoolDAO {
     @Autowired
     private SchoolMapper schoolMapper;
 
-    List<String> listProvince(){
+    public List<String> listProvince(){
         return null;
     }
 
-    List<String> listCity(String province){
+    public List<String> listCity(String province){
         return null;
     }
 
-    School getSchoolBySchoolId(BigInteger SchoolId){
+    public School getSchoolBySchoolId(BigInteger SchoolId){
         School school ;
         school = schoolMapper.getSchoolBySchoolId(SchoolId);
         return school;
