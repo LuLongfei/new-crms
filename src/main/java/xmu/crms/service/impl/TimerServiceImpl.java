@@ -22,6 +22,5 @@ public class TimerServiceImpl implements TimerService {
 
     @Override
     public void scheduled() {
-
     }
 }
