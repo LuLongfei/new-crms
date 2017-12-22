@@ -9,7 +9,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;;
 import xmu.crms.entity.School;
 import xmu.crms.service.impl.SchoolServiceImpl;
 
-
+/**
+ * @author 3-4
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = CrmsApplication.class)
 public class SchoolTests {
