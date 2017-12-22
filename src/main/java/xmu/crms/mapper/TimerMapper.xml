@@ -4,7 +4,7 @@
 <mapper namespace="xmu.crms.mapper.TimerMapper">
     <resultMap id="event" type="xmu.crms.entity.Event">
         <id column="id" property="id" javaType="java.math.BigInteger"/>
-        <result column="time" property="time" javaType="java.util.Date"/>
+        <result column="time" property="time"/>
         <result column="bean" property="beanName" />
         <result column="parameter" property="map" />
     </resultMap>
