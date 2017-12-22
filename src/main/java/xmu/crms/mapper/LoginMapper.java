@@ -25,4 +25,6 @@ public interface LoginMapper {
      * @return
      */
     User getUserLoginByWechat(String wechat);
+
+
 }

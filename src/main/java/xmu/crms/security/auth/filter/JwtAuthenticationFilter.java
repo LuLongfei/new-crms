@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import xmu.crms.entity.User;
+import xmu.crms.security.auth.JwtPayload;
 import xmu.crms.security.auth.JwtService;
 
 import javax.servlet.FilterChain;
@@ -28,8 +29,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtService jwtService;
 
-    private static final String ROLE_STUDENT = "STUDENT";
-    private static final String ROLE_TEACHER = "TEACHER";
+    private static final String ROLE_STUDENT = "ROLE_STUDENT";
+    private static final String ROLE_TEACHER = "ROLE_TEACHER";
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -37,11 +38,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String tokenHeader = "Bearer ";
         if (authHeader != null && authHeader.startsWith(tokenHeader)) {
             String authToken = authHeader.substring(tokenHeader.length());
-            User user = jwtService.verifyJwt(authToken);
-            if (user != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            JwtPayload jwtPayload = jwtService.verifyJwt(authToken);
+            if (jwtPayload != null && SecurityContextHolder.getContext().getAuthentication() == null
+                    && jwtPayload.getExp() > System.currentTimeMillis()) {
+                User user = jwtPayload.toUser();
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user.getPhone(),
                         null, getAuthorities(1));
                 authentication.setDetails(user);
+                request.setAttribute("user", user);
+                request.setAttribute("userId", user.getId());
+                request.setAttribute("name", user.getName());
+                request.setAttribute("type", user.getType());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }

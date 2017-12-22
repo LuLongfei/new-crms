@@ -23,8 +23,8 @@ import java.util.List;
 @Qualifier("customAuthenticationProvider")
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    private static final String ROLE_STUDENT = "STUDENT";
-    private static final String ROLE_TEACHER = "TEACHER";
+    private static final String ROLE_STUDENT = "ROLE_STUDENT";
+    private static final String ROLE_TEACHER = "ROLE_TEACHER";
 
     @Autowired
     @Qualifier("customUserDetailsService")
@@ -50,8 +50,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return authentication.equals(
+        boolean a =  authentication.equals(
                 UsernamePasswordAuthenticationToken.class);
+        return a;
     }
 
     private boolean comparePassword(String input, String trusted) {

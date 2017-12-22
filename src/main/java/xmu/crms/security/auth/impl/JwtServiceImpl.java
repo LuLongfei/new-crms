@@ -23,6 +23,7 @@ public class JwtServiceImpl implements xmu.crms.security.auth.JwtService {
     @Value("${hmac.sha256.secret-key}")
     private String secret;
 
+    private Long expireTime = 24 * 60 * 60 * 1000L;
     /**
      * 固定的 JWT header
      */
@@ -43,7 +44,7 @@ public class JwtServiceImpl implements xmu.crms.security.auth.JwtService {
     public String generateJwt(User user) {
         ObjectMapper objectMapper = new ObjectMapper();
         JwtPayload jwtPayload = new JwtPayload(user.getId(),
-                user.getType() == 1 ? "teacher" : "student", user.getName(), 16546);
+                user.getType() == 1 ? "teacher" : "student", user.getName(), System.currentTimeMillis() + expireTime);
         try {
             String header = objectMapper.writeValueAsString(JWT_HEADER);
             String payload = objectMapper.writeValueAsString(jwtPayload);
@@ -98,7 +99,7 @@ public class JwtServiceImpl implements xmu.crms.security.auth.JwtService {
     }
 
     @Override
-    public User verifyJwt(String jwtString) {
+    public JwtPayload verifyJwt(String jwtString) {
 
         String[] t = jwtString.split("\\.");
         if (t.length != 3) {
@@ -114,15 +115,8 @@ public class JwtServiceImpl implements xmu.crms.security.auth.JwtService {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             payloadString = base64decode(payloadString);
-            Map map = objectMapper.readValue(payloadString.getBytes(), Map.class);
-            user.setId(new BigInteger(map.get("id").toString()));
-            if (map.get("type").toString().equals("student")) {
-                user.setType(0);
-            }
-            if (map.get("type").toString().equals("teacher")) {
-                user.setType(1);
-            }
-            return user;
+            JwtPayload jwtPayload = objectMapper.readValue(payloadString.getBytes(), JwtPayload.class);
+            return jwtPayload;
         } catch (Exception e) {
             return null;
         }

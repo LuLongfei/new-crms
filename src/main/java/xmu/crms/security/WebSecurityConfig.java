@@ -74,7 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // 添加权限控制
                 .authorizeRequests()
-                .antMatchers("/view/**").permitAll()
+                .antMatchers("/**").permitAll()
                 // 添加 JWT 过滤器，对用户进行权限认证
                 .and()
                 .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);

@@ -11,5 +11,5 @@ public interface JwtService {
      */
     String generateJwt(User user);
 
-    User verifyJwt(String jwtString);
+    JwtPayload verifyJwt(String jwtString);
 }

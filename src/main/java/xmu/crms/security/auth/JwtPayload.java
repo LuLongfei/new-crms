@@ -14,13 +14,13 @@ public class JwtPayload {
     private BigInteger id;
     private String type;
     private String name;
-    private Integer exp;
+    private Long exp;
 
-    public JwtPayload(User user, Integer exp) {
+    public JwtPayload() {
 
     }
 
-    public JwtPayload(BigInteger id, String type, String name, Integer exp) {
+    public JwtPayload(BigInteger id, String type, String name, Long exp) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -51,11 +51,23 @@ public class JwtPayload {
         this.name = name;
     }
 
-    public Integer getExp() {
+    public Long getExp() {
         return exp;
     }
 
-    public void setExp(Integer exp) {
+    public void setExp(Long exp) {
         this.exp = exp;
+    }
+
+    public User toUser() {
+        User user = new User();
+        user.setId(id);
+        user.setName(name);
+        if (type.equals("student")) {
+            user.setType(0);
+        } else if(type.equals("teacher")){
+            user.setType(1);
+        }
+        return user;
     }
 }
