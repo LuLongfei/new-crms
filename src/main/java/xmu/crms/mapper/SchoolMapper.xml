@@ -9,7 +9,21 @@
         <result column="city" property="city"/>
     </resultMap>
 
+    <select id="getSchoolListByCity" resultMap="school">
+        SELECT id, name, province, city FROM school WHERE city = #{city}
+    </select>
+
+    <select id="rechecking" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM school
+        WHERE (name=#{name} AND province=#{province} AND city=#{city})
+    </select>
+
     <select id="getSchoolBySchoolId" resultMap="school">
         SELECT id,`name`, province, city  from school WHERE id = #{SchoolId}
     </select>
+
+    <insert id="insertSchool" parameterType="xmu.crms.entity.School" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO school(name, province, city) VALUES (#{name}, #{province}, #{city})
+    </insert>
 </mapper>

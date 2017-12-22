@@ -1,17 +1,37 @@
 package xmu.crms.mapper;
 
-import org.springframework.stereotype.Component;
-import xmu.crms.entity.School;
-
 import java.math.BigInteger;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+import xmu.crms.entity.School;
+
 /**
- * @author Su Xiaorui
- * @date 2017-12-21
+ * @author 3-4
  */
 @Component
 public interface SchoolMapper {
+
+    /**
+     * 获取学校列表
+     * @param city
+     * @return
+     */
+    List<School> getSchoolListByCity(String city);
+
+    /**
+     * 插入学校
+     * @param school
+     */
+    void insertSchool(School school);
+
+    /**
+     * 学校查重
+     * @param school
+     * @return
+     */
+    int rechecking(School school);
 
     /**
      * 显示省份
