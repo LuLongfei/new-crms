@@ -1,6 +1,7 @@
 package xmu.crms.dao;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +14,13 @@ import xmu.crms.mapper.SchoolMapper;
 public class SchoolDAO {
 	@Autowired
 	private SchoolMapper schoolMapper;
-
-	/**
-	 * 根据城市获取学校列表
-	 * @param city
-	 * @return
-	 */
+	
 	public List<School> getSchoolListByCity(String city) {
-		List<School> schoolList;
+		List<School> schoolList = new ArrayList<School>();
 		schoolList = schoolMapper.getSchoolListByCity(city);
 		return schoolList;
 	}
-
-	/**
-	 * 插入一条学校记录
-	 * @param school
-	 */
+	
 	public void insertSchool(School school) {
 		try {
 			schoolMapper.insertSchool(school);
@@ -36,7 +28,7 @@ public class SchoolDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
 	 * 学校查重
 	 * @param school
@@ -44,19 +36,5 @@ public class SchoolDAO {
 	 */
 	public int rechecking(School school) {
 		return schoolMapper.rechecking(school);
-	}
-
-	public List<String> listProvince(){
-		return null;
-	}
-
-	public List<String> listCity(String province){
-		return null;
-	}
-
-	public School getSchoolBySchoolId(BigInteger SchoolId){
-		School school ;
-		school = schoolMapper.getSchoolBySchoolId(SchoolId);
-		return school;
 	}
 }

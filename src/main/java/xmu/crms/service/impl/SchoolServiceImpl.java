@@ -9,6 +9,9 @@ import xmu.crms.service.SchoolService;
 import java.math.BigInteger;
 import java.util.List;
 
+/**
+ * @author 3-4
+ */
 @Service
 public class SchoolServiceImpl implements SchoolService {
     @Autowired
