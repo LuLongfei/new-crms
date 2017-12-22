@@ -37,4 +37,18 @@ public class SchoolDAO {
 	public int rechecking(School school) {
 		return schoolMapper.rechecking(school);
 	}
+
+    public List<String> listProvince(){
+        return null;
+    }
+
+    public List<String> listCity(String province){
+        return null;
+    }
+
+    public School getSchoolBySchoolId(BigInteger SchoolId){
+        School school ;
+        school = schoolMapper.getSchoolBySchoolId(SchoolId);
+        return school;
+    }
 }
