@@ -26,8 +26,10 @@ public class SchoolServiceImpl implements SchoolService {
 
     @Override
     public Boolean insertSchool(School school) {
+
         if(schoolDAO.rechecking(school) > 0) {
-            return false;	//学校已存在
+            // 学校已存在
+            return false;
         } else {
             schoolDAO.insertSchool(school);
             return true;
@@ -36,20 +38,18 @@ public class SchoolServiceImpl implements SchoolService {
 
     @Override
     public List<String> listProvince() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public List<String> listCity(String province) {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public School getSchoolBySchoolId(BigInteger SchoolId) {
+    public School getSchoolBySchoolId(BigInteger schoolId) {
         School school;
-        school = schoolDAO.getSchoolBySchoolId(SchoolId);
+        school = schoolDAO.getSchoolBySchoolId(schoolId);
         return school;
     }
 }

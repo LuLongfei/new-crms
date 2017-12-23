@@ -1,15 +1,18 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="xmu.crms.mapper.SchoolMapper">
+    <!--
     <resultMap id="school" type="xmu.crms.entity.School">
         <id column="id" property="id" javaType="java.math.BigInteger"/>
         <result column="name" property="name"/>
         <result column="province" property="province"/>
         <result column="city" property="city"/>
     </resultMap>
+    -->
 
-    <select id="getSchoolListByCity" resultMap="school">
+    <select id="getSchoolListByCity" resultType="xmu.crms.entity.School">
         SELECT id, name, province, city FROM school WHERE city = #{city}
     </select>
 
@@ -19,7 +22,7 @@
         WHERE (name=#{name} AND province=#{province} AND city=#{city})
     </select>
 
-    <select id="getSchoolBySchoolId" resultMap="school">
+    <select id="getSchoolBySchoolId" resultType="xmu.crms.entity.School">
         SELECT id,`name`, province, city  from school WHERE id = #{SchoolId}
     </select>
 
