@@ -21,9 +21,9 @@
     
     <resultMap id="attendance" type="xmu.crms.entity.Attendance">
         <id column="id" property="id" javaType="java.math.BigInteger"/>
-        <result column="student_id" property="student" javaType="java.math.BigInteger"/>
-        <result column="seminar_id" property="seminar" javaType="java.math.BigInteger"/>
-        <result column="class_id" property="classInfo" javaType="java.math.BigInteger"/>
+        <result column="student_id" property="student.id" javaType="java.math.BigInteger"/>
+        <result column="seminar_id" property="seminar.id" javaType="java.math.BigInteger"/>
+        <result column="class_id" property="classInfo.id" javaType="java.math.BigInteger"/>
         <result column="attendance_status" property="attendanceStatus"/>
     </resultMap>
 

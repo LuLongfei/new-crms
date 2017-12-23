@@ -52,9 +52,9 @@ public class UserDAO {
 		User user=new User();
 		user.setId(userId);
 		
-		attendance.setClassInfoDetail(classInfo);
-		attendance.setSeminarDetail(seminar);
-		attendance.setStudentDetail(user);
+		attendance.setClassInfo(classInfo);
+		attendance.setSeminar(seminar);
+		attendance.setStudent(user);
 		attendance.setAttendanceStatus(attendanceStatus);
 		userMapper.insertAttendanceById(attendance);
 

@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
 				e.printStackTrace();
 			}
 			//System.out.println(student);
-			attendance.setStudentDetail(student);
+			attendance.setStudent(student);
 		}
 		return attendances;
 	}
