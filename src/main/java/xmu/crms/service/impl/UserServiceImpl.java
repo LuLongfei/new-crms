@@ -162,8 +162,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> listUserByClassId(BigInteger classId, String numBeginWith, String nameBeginWith)
 			throws IllegalArgumentException, ClassesNotFoundException {
-		userDAO.listUserByClassId(classId, nameBeginWith, nameBeginWith);
-		return null;
+		List<User> users=null;
+		if(numBeginWith==null)
+			numBeginWith="";
+		if(nameBeginWith==null)
+			nameBeginWith="";
+		users=userDAO.listUserByClassId(classId, numBeginWith, nameBeginWith);
+		return users;
 	}
 
 	@Override

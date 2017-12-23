@@ -62,7 +62,7 @@ public class UserDAO {
 	}
 	
 	public List<User> listUserByClassId(BigInteger classId, String numBeginWith, String nameBeginWith){
-		return userMapper.listUserByClassId(classId, numBeginWith, nameBeginWith);
+		return userMapper.getUserByClassId(classId, numBeginWith, nameBeginWith);
 	}
 	
 	public void updateUserByUserId(BigInteger userId, User user) {

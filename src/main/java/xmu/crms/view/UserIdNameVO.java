@@ -6,6 +6,7 @@ import xmu.crms.entity.School;
 import xmu.crms.entity.User;
 
 public class UserIdNameVO {
+
 	private BigInteger id;
 	private String name;
 	
@@ -26,5 +27,10 @@ public class UserIdNameVO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return id + " " + name;
 	}
 }
