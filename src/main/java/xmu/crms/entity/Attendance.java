@@ -18,19 +18,19 @@ public class Attendance {
 	public User getStudent() {
 		return student;
 	}
-	public void setStudent(User student) {
+	public void setStudentDetail(User student) {
 		this.student = student;
 	}
 	public ClassInfo getClassInfo() {
 		return classInfo;
 	}
-	public void setClassInfo(ClassInfo classInfo) {
+	public void setClassInfoDetail(ClassInfo classInfo) {
 		this.classInfo = classInfo;
 	}
 	public Seminar getSeminar() {
 		return seminar;
 	}
-	public void setSeminar(Seminar seminar) {
+	public void setSeminarDetail(Seminar seminar) {
 		this.seminar = seminar;
 	}
 	public Integer getAttendanceStatus() {
@@ -38,6 +38,21 @@ public class Attendance {
 	}
 	public void setAttendanceStatus(Integer attendanceStatus) {
 		this.attendanceStatus = attendanceStatus;
+	}
+	public void setClassInfo(BigInteger classId)
+	{
+		classInfo=new ClassInfo();
+		this.classInfo.setId(classId);
+	}
+	public void setSeminar(BigInteger seminarId)
+	{
+		seminar=new Seminar();
+		this.seminar.setId(seminarId);
+	}
+	public void setStudent(BigInteger studentId)
+	{
+		student=new User();
+		this.student.setId(studentId);
 	}
 	
 }
