@@ -24,7 +24,7 @@ public interface UserService {
 	 * @exception ClassesNotFoundException 未找到班级
 	 * @exception SeminarNotFoundException 未找到讨论课
 	 */
-	void insertAttendanceById(BigInteger classId, BigInteger seminarId,
+	BigInteger insertAttendanceById(BigInteger classId, BigInteger seminarId,
 							  BigInteger userId, double longitude, double latitude) throws
 			IllegalArgumentException,ClassesNotFoundException,SeminarNotFoundException;
 
@@ -136,6 +136,19 @@ public interface UserService {
 			IllegalArgumentException;
 
 	/**
+	 * 获取讨论课所在班级迟到学生名单.
+	 * <p>获取讨论课所在班级迟到学生名单<br>
+	 * @param seminarId 讨论课ID
+	 * @param classId 班级ID
+	 * @return list 处于迟到状态的学生列表
+	 * @see UserService #listUserByClassId(BigInteger, String, String)
+	 * @see UserService #listPresentStudent(BigInteger, BigInteger)
+	 * @exception IllegalArgumentException throws when 信息不合法，id格式错误 
+	 */
+	List<User> listLateStudent(BigInteger seminarId, BigInteger classId) throws 
+			IllegalArgumentException;
+	
+	/**
 	 * 根据教师名称列出课程名称.
 	 * <p>根据教师名称列出课程名称<br>
 	 * @author yexiaona
@@ -145,4 +158,6 @@ public interface UserService {
 	 * @see CourseService #listCourseByUserId(BigInteger userId)
 	 */
 	List<Course> listCourseByTeacherName(String teacherName);
+
+	
 }
