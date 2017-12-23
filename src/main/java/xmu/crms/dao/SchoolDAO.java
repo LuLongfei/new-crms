@@ -10,14 +10,21 @@ import org.springframework.stereotype.Repository;
 import xmu.crms.entity.School;
 import xmu.crms.mapper.SchoolMapper;
 
+/**
+ * @author 3-4
+ */
 @Repository
 public class SchoolDAO {
 	@Autowired
 	private SchoolMapper schoolMapper;
 	
 	public List<School> getSchoolListByCity(String city) {
-		List<School> schoolList = new ArrayList<School>();
-		schoolList = schoolMapper.getSchoolListByCity(city);
+		List<School> schoolList = new ArrayList<>(16);
+		try {
+			schoolList = schoolMapper.getSchoolListByCity(city);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return schoolList;
 	}
 	
@@ -46,9 +53,9 @@ public class SchoolDAO {
         return null;
     }
 
-    public School getSchoolBySchoolId(BigInteger SchoolId){
+    public School getSchoolBySchoolId(BigInteger schoolId){
         School school ;
-        school = schoolMapper.getSchoolBySchoolId(SchoolId);
+        school = schoolMapper.getSchoolBySchoolId(schoolId);
         return school;
     }
 }
