@@ -5,12 +5,37 @@
     <resultMap id="event" type="xmu.crms.entity.Event">
         <id column="id" property="id" javaType="java.math.BigInteger"/>
         <result column="time" property="time" javaType="java.util.Date"/>
-        <result column="bean" property="beanName" />
-        <result column="parameter" property="map" />
+        <result column="bean_name" property="beanName"/>
+        <result column="method_name" property="methodName"/>
+        <result column="parameter" property="parameter"/>
     </resultMap>
 
-    <insert id="insertEvent" parameterType="xmu.crms.entity.Event" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO event(`time`,`bean`,`parameter`) VALUES (#{time}, #{beanName}, #{paramMap})
+    <select id="getExecutableEvents" resultMap="event">
+        SELECT `id`,`time`,`bean_name`,`method_name`,`parameter`
+        FROM event
+        WHERE `time` BETWEEN NOW()- INTERVAL 10 MINUTE AND NOW()
+    </select>
+
+    <select id="getEventById" resultMap="event">
+        SELECT `id`,`time`,`bean_name`,`method_name`,`parameter`
+        FROM event
+        WHERE `id`=#{id}
+    </select>
+
+    <insert id="insertEvent" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO event(`time`, `bean_name`, `method_name`, `parameter`)
+        VALUES (#{time}, #{bean_name}, #{method_name}, #{parameter})
     </insert>
+
+    <update id="updateEvent" parameterType="xmu.crms.entity.Event">
+        UPDATE event
+        SET `time`=#{time}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteEvent" parameterType="xmu.crms.entity.Event">
+        DELETE FROM event
+        WHERE `id`=#{id}
+    </delete>
 
 </mapper>

@@ -48,8 +48,8 @@ public interface SchoolMapper {
 
     /**
      * 通过学校的id获取学校信息
-     * @param SchoolId
+     * @param schoolId
      * @return
      */
-    School getSchoolBySchoolId(BigInteger SchoolId);
+    School getSchoolBySchoolId(BigInteger schoolId);
 }

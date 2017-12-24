@@ -2,19 +2,14 @@ package xmu.crms.entity;
 
 import java.math.BigInteger;
 import java.util.Date;
-import java.util.HashMap;
-
-import org.springframework.context.annotation.Bean;
 
 public class Event {
 
     private BigInteger id;
-
+    private String beanName;
+    private String methodName;
+    private String parameter;
     private Date time;
-
-    private Bean beanName;
-
-    private HashMap<BigInteger, String> map;
 
     public BigInteger getId() {
         return id;
@@ -22,6 +17,30 @@ public class Event {
 
     public void setId(BigInteger id) {
         this.id = id;
+    }
+
+    public String getBeanName() {
+        return beanName;
+    }
+
+    public void setBeanName(String beanName) {
+        this.beanName = beanName;
+    }
+
+    public String getParameter() {
+        return parameter;
+    }
+
+    public void setParameter(String parameter) {
+        this.parameter = parameter;
+    }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
     }
 
     public Date getTime() {
@@ -32,41 +51,14 @@ public class Event {
         this.time = time;
     }
 
-    public Bean getBeanName() {
-        return beanName;
-    }
-
-    public void setBeanName(Bean beanName) {
-        this.beanName = beanName;
-    }
-
-    public HashMap getMap() {
-        return map;
-    }
-
-    public void setMap(HashMap map) {
-        this.map = map;
-    }
-
-    public Event() {
-
-    }
-
-    public Event(BigInteger id, Date time, Bean beanName, HashMap map) {
-        super();
-        this.id = id;
-        this.time = time;
-        this.beanName = beanName;
-        this.map = map;
-    }
-
     @Override
     public String toString() {
-        return "Event [id=" + id +
+        return "Event{" +
+                "id=" + id +
+                ", beanName='" + beanName + '\'' +
+                ", methodName='" + methodName + '\'' +
+                ", parameter='" + parameter + '\'' +
                 ", time=" + time +
-                ", beanName=" + beanName +
-                ", map=" + map +
-                "]";
+                '}';
     }
-
 }
