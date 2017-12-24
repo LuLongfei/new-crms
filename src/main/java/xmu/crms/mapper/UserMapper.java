@@ -24,7 +24,7 @@ public interface UserMapper {
 	
 	int insertAttendanceById(Attendance attendance);
 	
-	void updateUserByUserId(BigInteger userId, User user);
+	int updateUserByUserId(BigInteger userId, User user);
 	
 	List<User> getUserByClassId(BigInteger classId, String numBeginWith, String nameBeginWith);
 	

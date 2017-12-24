@@ -66,7 +66,7 @@
     </select>
     
     <select id="getAttendanceByIdAndStatus" resultMap="user">
-    	SELECT user_info.id, user_info.name
+    	SELECT distinct user_info.id, user_info.name
     	from attendance, user_info 
     	where class_id=#{arg0} and seminar_id=#{arg1} and attendance_status=#{arg2} and 
     		user_info.id=attendance.student_id

@@ -68,7 +68,11 @@ public class UserServiceImpl implements UserService {
 			//抛出异常
 		}*/
 
-		recordId=userDAO.insertAttendanceById(classId, seminarId, userId, 0);
+		try{
+			recordId=userDAO.insertAttendanceById(classId, seminarId, userId, 0);
+		}catch(ClassesNotFoundException | SeminarNotFoundException e){
+			throw e;
+		}
 		return recordId;
 	}
 
@@ -101,11 +105,9 @@ public class UserServiceImpl implements UserService {
 		User val=null;
 		try{
 			val = userDAO.getUserByUserId(userId);
-		}catch (Exception e){
-			e.printStackTrace();
+		}catch (UserNotFoundException e){
+			throw e;
 		}
-		if(val==null)
-			throw new UserNotFoundException();
 		return val;
 	}
 
@@ -115,9 +117,11 @@ public class UserServiceImpl implements UserService {
 		
 		List<User> users=null;
 		List<BigInteger> val=new ArrayList<>();
-		users = userDAO.listUserByUserName(userName);
-		if(users==null)
-			throw new UserNotFoundException();
+		try{
+			users = userDAO.listUserByUserName(userName);
+		}catch (UserNotFoundException e){
+			throw e;
+		}
 		for(User u:users)
 			val.add(u.getId());
 		return val;
@@ -146,7 +150,11 @@ public class UserServiceImpl implements UserService {
 	public List<User> listUserByUserName(String userName) throws UserNotFoundException {
 		
 		List<User> users=null;
-		users = userDAO.listUserByUserName(userName);
+		try{
+			users = userDAO.listUserByUserName(userName);
+		}catch (UserNotFoundException e){
+			throw e;
+		}
 		if(users==null)
 			throw new UserNotFoundException();
 		return users;
@@ -155,8 +163,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUserByUserId(BigInteger userId, User user) throws UserNotFoundException {
 		
-		userDAO.updateUserByUserId(userId,user);
-		
+		try{
+			userDAO.updateUserByUserId(userId,user);
+		}catch(UserNotFoundException e){
+			throw e;
+		}
 	}
 
 	@Override
@@ -167,7 +178,11 @@ public class UserServiceImpl implements UserService {
 			numBeginWith="";
 		if(nameBeginWith==null)
 			nameBeginWith="";
-		users=userDAO.listUserByClassId(classId, numBeginWith, nameBeginWith);
+		try{
+			users = userDAO.listUserByClassId(classId, numBeginWith, nameBeginWith);
+		}catch (ClassesNotFoundException e){
+			throw e;
+		}
 		return users;
 	}
 
