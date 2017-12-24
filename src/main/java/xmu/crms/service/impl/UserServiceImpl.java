@@ -37,18 +37,6 @@ public class UserServiceImpl implements UserService {
     private CourseService courseService;
     private ClassService classService;
 
-    @Value("${wechat.mp.appid}")
-    private String appid;
-
-    @Value("${wechat.mp.secret}")
-    private String secret;
-
-    private static final String KEY_OPEN_ID = "openid";
-    // private static final String KEY_SESSION_KEY = "session_key";
-
-    private static final String KEY_ERR_CODE = "errcode";
-
-
 	@Override
 	public BigInteger insertAttendanceById(BigInteger classId, BigInteger seminarId, BigInteger userId, double longitude,
 			double latitude) throws IllegalArgumentException, ClassesNotFoundException, SeminarNotFoundException {
