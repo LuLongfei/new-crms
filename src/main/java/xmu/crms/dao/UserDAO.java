@@ -31,7 +31,7 @@ public class UserDAO {
         	e.printStackTrace();
         }
         if(user==null)
-        	throw new UserNotFoundException();
+        	throw new UserNotFoundException("No such user");
         return user;
 	}
 
@@ -43,7 +43,7 @@ public class UserDAO {
             e.printStackTrace();
         }
         if(users==null||users.isEmpty())
-        	throw new UserNotFoundException();
+        	throw new UserNotFoundException("No such user");
         return users;
 	}
 	
@@ -68,7 +68,7 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		if(ret!=1)
-			throw new ClassesNotFoundException();
+			throw new ClassesNotFoundException("Class not found");
 
 		return attendance.getId();
 	}
@@ -82,7 +82,7 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		if(users==null||users.isEmpty())
-			throw new ClassesNotFoundException();
+			throw new ClassesNotFoundException("Class not found");
 		return users;
 	}
 	
@@ -94,7 +94,7 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		if(ret==0)
-			throw new UserNotFoundException();
+			throw new UserNotFoundException("No such user");
 	}
 	
 	public List<Attendance> listAttendanceById(BigInteger classId, BigInteger seminarId){
