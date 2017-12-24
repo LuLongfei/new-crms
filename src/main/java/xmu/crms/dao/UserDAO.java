@@ -52,9 +52,9 @@ public class UserDAO {
 		User user=new User();
 		user.setId(userId);
 		
-		attendance.setClassInfoDetail(classInfo);
-		attendance.setSeminarDetail(seminar);
-		attendance.setStudentDetail(user);
+		attendance.setClassInfo(classInfo);
+		attendance.setSeminar(seminar);
+		attendance.setStudent(user);
 		attendance.setAttendanceStatus(attendanceStatus);
 		userMapper.insertAttendanceById(attendance);
 
@@ -62,7 +62,7 @@ public class UserDAO {
 	}
 	
 	public List<User> listUserByClassId(BigInteger classId, String numBeginWith, String nameBeginWith){
-		return userMapper.listUserByClassId(classId, numBeginWith, nameBeginWith);
+		return userMapper.getUserByClassId(classId, numBeginWith, nameBeginWith);
 	}
 	
 	public void updateUserByUserId(BigInteger userId, User user) {

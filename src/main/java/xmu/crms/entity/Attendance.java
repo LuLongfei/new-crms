@@ -18,19 +18,19 @@ public class Attendance {
 	public User getStudent() {
 		return student;
 	}
-	public void setStudentDetail(User student) {
+	public void setStudent(User student) {
 		this.student = student;
 	}
 	public ClassInfo getClassInfo() {
 		return classInfo;
 	}
-	public void setClassInfoDetail(ClassInfo classInfo) {
+	public void setClassInfo(ClassInfo classInfo) {
 		this.classInfo = classInfo;
 	}
 	public Seminar getSeminar() {
 		return seminar;
 	}
-	public void setSeminarDetail(Seminar seminar) {
+	public void setSeminar(Seminar seminar) {
 		this.seminar = seminar;
 	}
 	public Integer getAttendanceStatus() {
