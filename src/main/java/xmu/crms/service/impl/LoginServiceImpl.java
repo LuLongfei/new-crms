@@ -4,13 +4,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import xmu.crms.dao.LoginDAO;
+import xmu.crms.entity.Course;
 import xmu.crms.entity.User;
 import xmu.crms.exception.UserNotFoundException;
+import xmu.crms.service.CourseService;
 import xmu.crms.service.LoginService;
+import xmu.crms.service.UserService;
 
 import java.math.BigInteger;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,6 +23,13 @@ import java.util.Map;
  */
 @Service
 public class LoginServiceImpl implements LoginService {
+
+//    @Autowired
+//    private CourseService courseService;
+
+    @Autowired
+    private UserService userService;
+
     @Autowired
     private LoginDAO loginDAO;
 
@@ -74,16 +86,33 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public User signUpPhone(User user) {
+        User user1 = loginDAO.getUserLoginByPhone(user.getPhone());
+        if (user1 != null) {
+            ;
+        } else {
+            return loginDAO.createUserWithPhone(user);
+        }
         return null;
     }
 
     @Override
+    @Transactional(rollbackFor = {IllegalArgumentException.class, UserNotFoundException.class})
     public void deleteTeacherAccount(BigInteger userId) throws IllegalArgumentException, UserNotFoundException {
+        try {
+//            List<Course> list = courseService.listCourseByUserId(userId);
+//            for (Course course : list) {
+//                courseService.deleteCourseByCourseId(course.getId());
+//            }
+            loginDAO.deleteUserById(userId);
+        } catch (Exception e) {
 
+        }
     }
 
     @Override
     public void deleteStudentAccount(BigInteger userId) throws IllegalArgumentException, UserNotFoundException {
-
+        loginDAO.deleteUserById(userId);
     }
+
+
 }

@@ -3,6 +3,10 @@ package xmu.crms.security.auth;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import xmu.crms.entity.User;
 
+/**
+ * @author LuLongfei
+ * @date 2017-12-22
+ */
 public interface UserDetailsService {
     /**
      * 获取用户信息

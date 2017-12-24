@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 import xmu.crms.entity.User;
 import xmu.crms.mapper.LoginMapper;
 
+import java.math.BigInteger;
+
 /**
  * @author LuLongfei
  */
@@ -33,4 +35,13 @@ public class LoginDAO {
         return user;
     }
 
+    public User createUserWithPhone(User user) {
+        loginMapper.createUserWithPhone(user);
+        return user;
+
+    }
+
+    public void deleteUserById(BigInteger id){
+            loginMapper.deleteUserbyId(id);
+    }
 }

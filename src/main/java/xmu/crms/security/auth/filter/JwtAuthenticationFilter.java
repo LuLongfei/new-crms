@@ -22,6 +22,7 @@ import java.util.List;
 
 /**
  * @author LuLongfei
+ * @date 2017-12-22
  */
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {

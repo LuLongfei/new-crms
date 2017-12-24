@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * @author LuLongfei
+ * @date 2017-12-22
  */
 @Component
 @Qualifier("customAuthenticationProvider")
@@ -50,7 +51,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public boolean supports(Class<?> authentication) {
-        boolean a =  authentication.equals(
+        boolean a = authentication.equals(
                 UsernamePasswordAuthenticationToken.class);
         return a;
     }
@@ -60,9 +61,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(
-            int type) {
+            Integer type) {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        if (type == 0) {
+        if (type == null) {
+            return authorities;
+        } else if (type == 0) {
             authorities.add(new SimpleGrantedAuthority(ROLE_STUDENT));
         } else if (type == 1) {
             authorities.add(new SimpleGrantedAuthority(ROLE_TEACHER));
