@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @MapperScan("xmu.crms.mapper")
 public class CrmsApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(CrmsApplication.class, args);
 	}
